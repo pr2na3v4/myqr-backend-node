@@ -6,9 +6,9 @@ const helmet = require('helmet');
 const morgan = require('morgan');
  
 
-const shopRoutes = require('./routes/shopRoutes');
-const analyticsRoutes = require('./routes/analyticsRoutes');
-const customerRoutes = require('./routes/customerRoutes');
+const shopRoutes = require('./src/routes/shopRoutes');
+const analyticsRoutes = require('./src/routes/analyticsRoutes');
+const customerRoutes = require('./src/routes/customerRoutes');
 
 const app = express();
 
