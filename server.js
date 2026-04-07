@@ -18,30 +18,7 @@ app.use(helmet());           // Security headers
 app.use(cors());             // Enable Cross-Origin Resource Sharing
 app.use(morgan('dev'));      // HTTP request logging
 app.use(express.json());
-// Allow both your local development and your final deployed frontend
-const allowedOrigins = [
-  'http://localhost:5173',
-  'http://localhost:3000',
-  'https://business-paymentqr-generator.netlify.app' // Add your Netlify URL here
-];
-
-app.use(cors({
-  origin: function (origin, callback) {
-    // Allow requests with no origin (like mobile apps or curl requests)
-    if (!origin) return callback(null, true);
-    if (allowedOrigins.indexOf(origin) === -1) {
-      const msg = 'The CORS policy for this site does not allow access from the specified Origin.';
-      return callback(new Error(msg), false);
-    }
-    return callback(null, true);
-  },
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'Accept'],
-  credentials: true
-}));
-
-// IMPORTANT: Handle the preflight OPTIONS request manually as a backup
-app.options('*', cors());     // REQUIRED: Parses incoming JSON (fixes your 'destructure' error)
+     // REQUIRED: Parses incoming JSON (fixes your 'destructure' error)
 app.use(express.urlencoded({ extended: true })); // Parses URL-encoded bodies
 
 // --- 2. Database Connection ---
